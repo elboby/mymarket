@@ -5,6 +5,7 @@ class CartController < ApplicationController
     # create cart if not exists
     if not @cart
       @cart = Cart.new
+      @cart.total = 0
       @cart.save
     end
 
@@ -21,7 +22,17 @@ class CartController < ApplicationController
     end
     cart_item.save
 
+    # update total
+    @cart.total = @cart.total + product.price
+    @cart.save
+
     redirect_to '/'
   end
 
+  def checkout
+    @cart.status = 'CHECKEDOUT'
+    @cart.save
+
+    redirect_to '/'
+  end
 end

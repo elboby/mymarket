@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   post 'cart/add/:product_id', to: 'cart#add', as: 'add_cart'
+  get 'cart/checkout', to: 'cart#checkout', as: 'checkout_cart'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

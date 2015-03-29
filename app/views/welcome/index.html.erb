@@ -21,6 +21,7 @@
     <li><%= cart_item.quantity %>X <%= cart_item.product.name %></li>
   <% end %>
   </ul>
-  <span>Total: <%= @cart.created_at %> Euro</span>
+  <span>Total: <%= @cart.total %> Euro</span>
+  <%= link_to 'Checkout', checkout_cart_path %>
 </div>
 <% end %>

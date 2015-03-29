@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
 
   protected
     def load_cart
-      @cart = Cart.last
+      @cart = Cart.where("status = ''").last
     end
 end

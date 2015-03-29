@@ -1,0 +1,12 @@
+<p>
+  <strong>Title:</strong>
+  <%= @region.title %>
+</p>
+ 
+<p>
+  <strong>Text:</strong>
+  <%= @region.text %>
+</p>
+
+<%= link_to 'Edit', edit_region_path(@region) %>|
+<%= link_to 'Back', regions_path %>

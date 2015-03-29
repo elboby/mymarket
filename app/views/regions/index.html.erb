@@ -1,0 +1,23 @@
+<h1>Listing regions</h1>
+
+<%= link_to 'new region', new_region_path  %>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Text</th>
+    <th colspan="3"></th>
+  </tr>
+ 
+  <% @regions.each do |region| %>
+    <tr>
+      <td><%= region.title %></td>
+      <td><%= region.text %></td>
+      <td><%= link_to 'Show', region_path(region) %></td>
+      <td><%= link_to 'Edit', edit_region_path(region) %></td>
+      <td><%= link_to 'Destroy', region_path(region),
+                                 method: :delete,
+                                 data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

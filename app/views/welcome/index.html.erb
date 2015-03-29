@@ -1,4 +1,4 @@
-<h2>Hello World</h2>
+<h1>Shop for delicious specialities!</h1>
 
 <div>
 
@@ -6,22 +6,11 @@
   <div>
     <h2><%= product.name %> from <%= product.provider.region.title %></h2>
     <i>by <%= product.provider.name %></i>
-    <p><%= link_to sprintf('Add to cart for %d euro', product.price), add_cart_path(product.id),
-                method: :post %></p>
+    <p><%= link_to add_cart_path(product.id),
+                method: :post, class: 'btn btn-primary btn-xs' do %>
+                <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart for <%= product.price %> euro
+        <% end %></p>
   </div>
   <% end %>
 
 </div>
-
-<% if @cart %>
-<div>
-  <h2>My Cart</h2>
-  <ul>
-  <% @cart.cart_items.each do |cart_item| %>
-    <li><%= cart_item.quantity %>X <%= cart_item.product.name %></li>
-  <% end %>
-  </ul>
-  <span>Total: <%= @cart.total %> Euro</span>
-  <%= link_to 'Checkout', checkout_cart_path %>
-</div>
-<% end %>

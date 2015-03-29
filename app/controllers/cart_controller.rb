@@ -5,6 +5,7 @@ class CartController < ApplicationController
     # create cart if not exists
     if not @cart
       @cart = Cart.new
+      @cart.user_id = 1
       @cart.total = 0
       @cart.save
     end
@@ -26,12 +27,17 @@ class CartController < ApplicationController
     @cart.total = @cart.total + product.price
     @cart.save
 
+    flash[:success] = "You have successfully added an item to the cart."
+
     redirect_to '/'
   end
 
   def checkout
+    # mark the cart as done
     @cart.status = 'CHECKEDOUT'
     @cart.save
+
+    flash[:success] = "You have successfully checked out the cart."
 
     redirect_to '/'
   end

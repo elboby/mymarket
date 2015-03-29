@@ -1,16 +1,49 @@
 <h1>Shop for delicious specialities!</h1>
 
-<div>
+<div class="bootcards-container">
+<div class="row">
 
-  <% @products.each do |product| %>
-  <div>
-    <h2><%= product.name %> from <%= product.provider.region.title %></h2>
-    <i>by <%= product.provider.name %></i>
-    <p><%= link_to add_cart_path(product.id),
-                method: :post, class: 'btn btn-primary btn-xs' do %>
-                <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart for <%= product.price %> euro
-        <% end %></p>
+  <div class="bootcards-cards">
+
+    <div class="col-sm-6">
+    <% @products.each_with_index do |product, index| %>
+
+    <% if index == (@products.length/2.to_f).ceil %>
+      </div>
+      <div class="col-sm-6">
+    <% end %>
+    
+    <div class="panel panel-default">
+      <div class="panel-heading clearfix">
+        <h3 class="panel-title pull-left"><%= product.name %></h3>
+          <%= link_to add_cart_path(product.id),
+                    method: :post, class: 'btn btn-primary pull-right' do %>
+            <span class="glyphicon glyphicon-shopping-cart"></span> Add to cart for <%= product.price %> euro
+          <% end %>
+        </div>
+        <div class="list-group">
+          <div class="list-group-item">
+            <p class="list-group-item-text">Produced by</p>
+            <h4 class="list-group-item-heading"><%= product.provider.name %></h4>
+          </div>
+          <div class="list-group-item">
+            <p class="list-group-item-text">From</p>
+            <h4 class="list-group-item-heading"><%= product.provider.region.title %></h4>
+          </div>
+          <div class="list-group-item">
+            <p class="list-group-item-text"><%= product.body%></p>
+          </div>
+        </div>
+        <img src="http://baconmockup.com/300/200/" class="img-responsive"/>
+      <div class="panel-footer">
+        <small>Built with Bootcards - Base Card</small>
+      </div>
+    </div>
+
+    <% end %>
+    </div>
+
   </div>
-  <% end %>
 
+</div>
 </div>

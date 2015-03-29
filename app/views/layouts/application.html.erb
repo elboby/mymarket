@@ -4,6 +4,10 @@
   <title>Mymarket</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/css/bootcards-desktop.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/bootcards/1.0.0/js/bootcards.min.js"></script>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -30,9 +34,9 @@
       <% if @cart %>
       <div>
         <h2>My Cart</h2>
-        <ul>
+        <ul class="list-group">
         <% @cart.cart_items.each do |cart_item| %>
-          <li><%= cart_item.quantity %>x <%= cart_item.product.name %></li>
+          <li class="list-group-item"><span class="badge"><%= cart_item.quantity %>x</span> <%= cart_item.product.name %></li>
         <% end %>
         </ul>
         <span>Total: <%= @cart.total %> Euro</span>

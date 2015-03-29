@@ -1,12 +1,10 @@
 Rails.application.routes.draw do
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   root 'welcome#index'
 
-  resources :regions
-  resources :providers do
-    resources :products
-  end
-
+  post 'cart/add/:product_id', to: 'cart#add', as: 'add_cart'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

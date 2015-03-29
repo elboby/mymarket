@@ -1,8 +1,26 @@
 <h2>Hello World</h2>
-<p>
-  The time is now: <%= Time.now %>
-</p>
-<p>
-  <%= link_to 'Providers', controller: 'providers' %>
-  <%= link_to 'Regions', controller: 'regions' %>
-</p>
+
+<div>
+
+  <% @products.each do |product| %>
+  <div>
+    <h2><%= product.name %> from <%= product.provider.region.title %></h2>
+    <i>by <%= product.provider.name %></i>
+    <p><%= link_to sprintf('Add to cart for %d euro', product.price), add_cart_path(product.id),
+                method: :post %></p>
+  </div>
+  <% end %>
+
+</div>
+
+<% if @cart %>
+<div>
+  <h2>My Cart</h2>
+  <ul>
+  <% @cart.cart_items.each do |cart_item| %>
+    <li><%= cart_item.quantity %>X <%= cart_item.product.name %></li>
+  <% end %>
+  </ul>
+  <span>Total: <%= @cart.created_at %> Euro</span>
+</div>
+<% end %>

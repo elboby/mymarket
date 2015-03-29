@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Owner:</strong>
+  <%= @provider.owner %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @provider.body %>
+</p>
+
+<p>
+  <strong>Region:</strong>
+  <%= link_to @provider.region.title, region_path(@provider.region) %>
+</p>
+
+<p>
+    <h2>Products</h2>
+    <%= render @provider.products %>
+
+</p>
+
+
+<%= link_to 'Edit', edit_provider_path(@provider) %> |
+<%= link_to 'Back', providers_path %>
